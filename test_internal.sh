@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-echo "I'm alive!"
+echo "Beginning complete F2S flow (except verification)"
 
 # Begin simple F2S flow test (simple_fpga_add_test)
-cd ${F2S_PATH}
+cd Fabric-to-Silicon || echo "Failed to navigate to F2S"
 
 cd fpga_cad_flow || echo "Failed to navigate to fpga_cad_flow"
 

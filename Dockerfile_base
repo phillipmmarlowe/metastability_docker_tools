@@ -6,6 +6,7 @@ ARG VCS_HOME
 ARG TABBY_HOME
 ARG VPR_HOME
 ARG MILL_HOME
+ARG SSV231_HOME
 
 ENV LM_LICENSE_FILE=${LM_LICENSE_FILE}
 ENV YOSYSHQ_LICENSE=${YOSYSHQ_LICENSE}
@@ -31,7 +32,7 @@ RUN dnf config-manager --set-enabled \
    crb
 RUN dnf install -y \
    epel-release
-
+   
 RUN dnf check-update || true
 RUN dnf upgrade -y
 
@@ -78,7 +79,7 @@ RUN dnf install -y \
 RUN python3 -m pip install \
   --upgrade pip
 
-# Masybe copy over a requirements.txt if Python is needed
+# Maybe copy over a requirements.txt if Python is needed
 # COPY ofs_extratool.sh $IOFS_BUILD_ROOT
 RUN python3 -m pip install \
    jsonschema \
@@ -98,5 +99,21 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 RUN dnf check-update || true
 RUN dnf upgrade -y
+
+RUN dnf update -y
+RUN dnf install ksh -y
+
+RUN dnf install -y yum-utils
+RUN dnf config-manager --set-enabled devel
+RUN dnf update -y
+RUN dnf install redhat-lsb-core -y
+
+RUN dnf install libXScrnSaver -y
+
+RUN dnf install openmotif -y 
+
+RUN dnf install libpng12 -y
+
+RUN dnf install mesa-libGLU -y
 
 WORKDIR /home

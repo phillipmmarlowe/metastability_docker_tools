@@ -18,3 +18,5 @@ WORKDIR /home/$UNAME
 # ENV PATH=...:$PATH
 
 CMD /bin/bash
+
+COPY test_internal.sh /home/$UNAME/test_internal.sh
